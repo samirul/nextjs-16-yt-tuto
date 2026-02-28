@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
         port: ''
       },
       {
-        hostname: 'knowing-swan-576.convex.cloud',
+        hostname: 'kindly-horse-150.convex.cloud',
         protocol: 'https',
         port: ''
       }
