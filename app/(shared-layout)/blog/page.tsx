@@ -9,12 +9,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from 'next';
 import { connection } from "next/server";
-import { cacheLife, cacheTag } from "next/cache";
-
-// export const dynamic = 'force-static';
-// export const revalidate = 30;
-// false | 0 | number
-// 'auto' | 'force-dynamic' | 'error' | 'force-static'
 
 export const metadata: Metadata = {
   title: "Blog |Next.js 16 Tutorial",
@@ -34,19 +28,15 @@ export default function BlogPage() {
           Insights, thoughts and trends from our team!
         </p>
       </div>
-      {/* <Suspense fallback={<SkeletonLoadingUi />}> */}
+      <Suspense fallback={<SkeletonLoadingUi />}>
         <LoadBlogList />
-      {/* </Suspense> */}
+      </Suspense>
     </div>
   );
 }
 
 async function LoadBlogList() {
-  //await new Promise((resolve) => setTimeout(resolve, 5000));
   await connection();
-  // "use cache";
-  // cacheLife("hours");
-  // cacheTag("blog");
   const data = await fetchQuery(api.posts.getPosts);
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
